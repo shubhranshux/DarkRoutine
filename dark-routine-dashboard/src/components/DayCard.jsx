@@ -15,10 +15,10 @@ export function DayCard({ day, isSelected, onSelect, index }) {
       whileHover={{ y: -4 }}
       whileTap={{ scale: 0.98 }}
       className={`
-        group relative flex flex-col items-center justify-center
-        w-[120px] sm:w-[130px] h-[160px] sm:h-[180px]
-        rounded-2xl border transition-all duration-300
-        snap-center
+        group relative flex flex-col items-center justify-center overflow-hidden
+        w-12 xs:w-14 sm:w-[120px] md:w-[130px] h-[100px] xs:h-[120px] sm:h-[160px] md:h-[180px]
+        rounded-xl sm:rounded-2xl border transition-all duration-300
+        snap-center flex-shrink-0
         ${isSelected 
           ? 'bg-gradient-to-b from-sky-500/15 via-slate-900/80 to-slate-900/90 border-sky-400/50 shadow-xl shadow-sky-500/15' 
           : isComplete
@@ -39,9 +39,9 @@ export function DayCard({ day, isSelected, onSelect, index }) {
         <motion.div
           initial={{ opacity: 0, y: -5 }}
           animate={{ opacity: 1, y: 0 }}
-          className="absolute top-3 px-3 py-1 
+          className="absolute top-1 sm:top-3 px-1.5 sm:px-3 py-0.5 sm:py-1 
                      bg-gradient-to-r from-sky-500 to-cyan-400 rounded-full
-                     text-[10px] font-bold text-slate-900 tracking-wider 
+                     text-[6px] sm:text-[10px] font-bold text-slate-900 tracking-wider 
                      shadow-lg shadow-sky-500/40"
         >
           TONIGHT
@@ -49,15 +49,15 @@ export function DayCard({ day, isSelected, onSelect, index }) {
       )}
       
       {/* Day name */}
-      <span className={`text-xs font-semibold tracking-wider uppercase mb-1
-        ${day.isToday ? 'mt-8 text-sky-400' : isSelected ? 'text-sky-300' : 'text-slate-500'}
+      <span className={`text-[8px] sm:text-xs font-semibold tracking-wider uppercase mb-0.5 sm:mb-1
+        ${day.isToday ? 'mt-5 sm:mt-8 text-sky-400' : isSelected ? 'text-sky-300' : 'text-slate-500'}
       `}>
         {day.dayName}
       </span>
       
       {/* Date number */}
       <motion.span 
-        className={`text-3xl font-bold mb-2
+        className={`text-lg sm:text-3xl font-bold mb-1 sm:mb-2
           ${isSelected ? 'text-white' : isComplete ? 'text-emerald-300' : 'text-slate-100'}
         `}
       >
@@ -65,7 +65,7 @@ export function DayCard({ day, isSelected, onSelect, index }) {
       </motion.span>
       
       {/* Progress Ring - Larger */}
-      <div className="relative w-16 h-16 mb-2">
+      <div className="relative w-8 h-8 sm:w-16 sm:h-16 mb-1 sm:mb-2">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 64 64">
           {/* Background ring */}
           <circle
@@ -110,17 +110,17 @@ export function DayCard({ day, isSelected, onSelect, index }) {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: "spring", stiffness: 400, damping: 15, delay: 0.3 }}
-              className="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 
+              className="w-6 h-6 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 
                          flex items-center justify-center shadow-lg shadow-emerald-500/30"
             >
-              <Check className="w-5 h-5 text-white" strokeWidth={3} />
+              <Check className="w-3 h-3 sm:w-5 sm:h-5 text-white" strokeWidth={3} />
             </motion.div>
           ) : hasProgress ? (
-            <span className={`text-lg font-bold ${isSelected ? 'text-sky-400' : 'text-slate-300'}`}>
+            <span className={`text-[10px] sm:text-lg font-bold ${isSelected ? 'text-sky-400' : 'text-slate-300'}`}>
               {day.percentage}%
             </span>
           ) : (
-            <Calendar className="w-5 h-5 text-slate-600" />
+            <Calendar className="w-3 h-3 sm:w-5 sm:h-5 text-slate-600" />
           )}
         </div>
       </div>
@@ -131,7 +131,7 @@ export function DayCard({ day, isSelected, onSelect, index }) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
-          className="flex items-center gap-1 px-2 py-0.5 rounded-full 
+          className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-full 
                      bg-gradient-to-r from-amber-500/20 to-orange-500/20 
                      border border-amber-400/30"
         >
